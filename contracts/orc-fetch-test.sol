@@ -369,6 +369,8 @@ interface IApeRouter02 is IApeRouter01 {
 
 pragma solidity >=0.6.2;
 
+import "hardhat/console.sol";
+
 contract ORCFetching {
     IUniswapV2Router02 quickSwapRouter = IUniswapV2Router02(0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff);
     IApeRouter02 apeRouter = IApeRouter02(0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607);
@@ -380,6 +382,8 @@ contract ORCFetching {
         address[] memory path = new address[](2);
         path[0] = 0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270; // WMATIC
         path[1] = 0xc2132D05D31c914a87C6611C10748AEb04B58e8F; // USDT
+
+        console.log("amountIn: %s, path0: %s, path1: %s", amountIn, path[0], path[1]);
 
         uint[] memory amounts = quickSwapRouter.getAmountsOut(amountIn, path);
         return amounts;
